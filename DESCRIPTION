@@ -1,0 +1,17 @@
+Package: recollections
+Type: Package
+Title: Data Structures for R
+Version: 0.1.0
+Author: Bob Jansen
+Maintainer: Bob Jansen <bobjansen@hey.com>
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+License: GPL (>=3)
+Encoding: UTF-8
+LazyData: true
+Imports:
+    Rcpp (>= 1.0.6), methods
+LinkingTo: Rcpp
+Suggests:
+    tinytest
+RoxygenNote: 5.0.1
