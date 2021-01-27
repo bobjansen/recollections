@@ -4,10 +4,22 @@
 \alias{dictionary}
 \title{Dictionary object}
 \usage{
-dictionary()
+dictionary(..., lst = NULL, keys = NULL, values = NULL)
+}
+\arguments{
+\item{...}{Argument value pairs to put in the dictionary.}
+
+\item{lst}{A list to put into the dictionary.}
+
+\item{keys}{Keys to put into a dictionary. Needs to have the same length as
+\code{values}.}
+
+\item{values}{Values to put into a dictionary. Needs to have the same length
+as \code{keys}.}
+}
+\value{
+A dictionary object.
 }
 \description{
-A dictionary object backed by C++'s \code{std::map}. This is implemented
-using a red black tree in most cases.
+A dictionary object backed by C++'s \code{std::unordered_map}.
 }
-

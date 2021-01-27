@@ -1,0 +1,153 @@
+---
+title: "recollections benchmark"
+author: "Bob Jansen"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{recollections benchmark}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, echo = FALSE}
+options(width = 120)
+library(data.table)
+suppressMessages(library(recollections))
+```
+
+# Introduction
+
+These benchmarks compare the speed of implementing the data structures 
+provided by recollections with base R and the data.table-package. Both base R
+and data.table were not made with the use of case of the recollections in mind
+so one would hope that the purpose-built recollection package is faster on
+these tasks. If you want to manipulate tables and these tables are big or you
+need your computations need to be fast there is no better tool than data.table.
+
+# Priority Heap
+
+The priority heap is implemented as a container in recollections. It is not
+present as a data structure in base R or data.table. The use of of the queue
+can be mimicked as is done below.
+
+```{r}
+set.seed(42)
+inputData <- sample(1e7L, 5e4L, replace = FALSE)
+
+recollectionsSolution <- function(inputData) {
+  pq <- recollections::priorityQueue()
+  vapply(inputData, function(value) {
+    push(pq, value)
+    top(pq)
+  }, integer(1))
+}
+
+baseSolution <- function(inputData) {
+  vapply(seq_along(inputData), function(i) {
+    max(inputData[1:i])
+  }, integer(1))
+}
+
+data.tableSolution <- function(inputData) {
+  dt <- data.table(value = integer(0))
+  vapply(inputData, function(value) {
+    dt <<- rbind(dt, data.table(value = value))
+    setorderv(dt, 'value', order = -1L)
+    dt[1, value]
+  }, integer(1))
+}
+```
+```{r, echo=FALSE, eval=FALSE}
+topList <- recollectionsSolution(inputData[1:1e3])
+head(topList)
+tail(topList)
+
+topList <- baseSolution(inputData[1:1e3])
+head(topList)
+tail(topList)
+
+topList <- data.tableSolution(inputData[1:1e3])
+head(topList)
+tail(topList)
+```
+
+## Benchmark - Small sample
+
+```{r}
+smallSample <- inputData[1:1e3]
+microbenchmark::microbenchmark(
+  recollections = recollectionsSolution(smallSample),
+  base = baseSolution(smallSample),
+  `data.table` = data.tableSolution(smallSample),
+  times = 10L
+)
+```
+
+## Benchmark - Bigger sample
+
+The algorithm used for data.table is slow due to the need to do repeated 
+ordering. Other ways would be faster but more or less equivalent to just using
+base R. In the next benchmark it is excluded and the input size is increased.
+
+```{r}
+biggerSample <- inputData[1:2e4]
+microbenchmark::microbenchmark(
+  recollections = recollectionsSolution(biggerSample),
+  base = baseSolution(biggerSample),
+  times = 3L,
+  control = list(warmup = 1L)
+)
+```
+
+## Benchmark - Full sample
+
+Even if the data set becomes quite large, the performance of the recollections
+Priority Queue is good. The relative performance of the base solution suffers
+more in comparison.
+
+```{r}
+microbenchmark::microbenchmark(
+  recollections = recollectionsSolution(inputData),
+  base = baseSolution(inputData),
+  times = 3L,
+  control = list(warmup = 1L)
+)
+```
+
+# Dictionary
+
+```{r}
+keys <- vapply(inputData, digest::digest, character(1L))
+
+microbenchmark::microbenchmark(
+  recollections = dictionary(keys, inputData),
+  data.table = {
+    dtMap <- data.table(Key = keys, Value = inputData)
+    setkeyv(dtMap, 'Key')
+  },
+  times = 3L,
+  control = list(warmup = 1L)
+)
+
+dtMap <- data.table(Key = keys, Value = inputData)
+setkeyv(dtMap, 'Key')
+dict <- dictionary(keys, inputData)
+names(inputData) <- keys
+
+key1 <- keys[[as.integer(length(keys) / 4L)]]
+key2 <- keys[[as.integer(length(keys) / 2L)]]
+key3 <- keys[[as.integer(length(keys) / 4L * 3L)]]
+microbenchmark::microbenchmark(
+  recollections = c(dict[key1], dict[key2], dict[key3]),
+  data.table = c(dtMap[key1, Value], dtMap[key2, Value], dtMap[key3, Value]),
+  base = c(inputData[[key1]], inputData[[key2]], inputData[[key3]]),
+  control = list(warmup = 5L),
+  times = 10L
+)
+```

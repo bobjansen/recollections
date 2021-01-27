@@ -1,5 +1,7 @@
+^clean.sh$
 ^renv$
 ^renv\.lock$
 ^.*\.Rproj$
 ^\.Rproj\.user$
+benchmarks_cache
 ^.*\.tar\.gz$

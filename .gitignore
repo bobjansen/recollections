@@ -5,3 +5,7 @@
 renv
 renv.lock
 *.tar.gz
+*.o
+*.so
+recollections.Rcheck
+vignettes/benchmarks_cache
