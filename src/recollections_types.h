@@ -23,16 +23,16 @@ RCPP_MODULE(dictionary_module) {
 }
 
 RCPP_MODULE(priority_queue_module) {
-  class_<PriorityQueue<RObject>>("PriorityQueue")
+  class_<PriorityQueue>("PriorityQueue")
     .constructor()
 
-    .method("clear", &PriorityQueue<RObject>::clear)
-    .method("empty", &PriorityQueue<RObject>::empty)
-    .method("pop", &PriorityQueue<RObject>::pop)
-    .method("push", &PriorityQueue<RObject>::push)
-    .method("size", &PriorityQueue<RObject>::size)
-    .method("top", &PriorityQueue<RObject>::top)
-    .method("topAndPop", &PriorityQueue<RObject>::topAndPop)
+    .method("clear", &PriorityQueue::clear)
+    .method("empty", &PriorityQueue::empty)
+    .method("pop", &PriorityQueue::pop)
+    .method("push", &PriorityQueue::push)
+    .method("size", &PriorityQueue::size)
+    .method("top", &PriorityQueue::top)
+    .method("topAndPop", &PriorityQueue::topAndPop)
   ;
 }
 

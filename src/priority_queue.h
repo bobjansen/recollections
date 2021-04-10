@@ -5,13 +5,12 @@ using namespace Rcpp;
 
 //' Priority Queue class
 //' @export
-template <class T>
 class PriorityQueue {
 private:
-  std::priority_queue<T> * innerHeap;
+  std::priority_queue<int> * innerHeap;
 
 public:
-  PriorityQueue() : innerHeap(new std::priority_queue<T>()) {};
+  PriorityQueue() : innerHeap(new std::priority_queue<int>()) {};
   ~PriorityQueue() {
     delete innerHeap;
   }
@@ -30,7 +29,7 @@ public:
     return innerHeap->size();
   }
 
-  void push(T value) {
+  void push(int value) {
     innerHeap->push(value);
   }
 
@@ -42,15 +41,15 @@ public:
     }
   }
 
-  T top() {
+  int top() {
     if (empty()) {
       throw std::length_error("Priority Queue empty, can't top()");
     }
     return innerHeap->top();
   }
 
-  T topAndPop() {
-    T topValue = top();
+  int topAndPop() {
+    int topValue = top();
     innerHeap->pop();
     return topValue;
   }
