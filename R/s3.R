@@ -40,6 +40,14 @@ filter <- function(container, fun) {
   UseMethod('filter')
 }
 
+#' Get the current index of a sequence
+#' @param container A lazy sequence.
+#' @return The index.
+#' @export
+getIndex <- function(sequence) {
+  UseMethod('getIndex')
+}
+
 #' Get a value from a container
 #' @param container A container object.
 #' @param key The key to get.
@@ -64,6 +72,14 @@ keys <- function(container) {
 #' @export
 map <- function(container, fun) {
   UseMethod('map')
+}
+
+#' Get the next value in a sequence
+#' @param sequence A lazy sequence.
+#' @return The next item.
+#' @export
+nextItem <- function(sequence) {
+  UseMethod('nextItem')
 }
 
 #' Push a value to a container
@@ -101,6 +117,30 @@ size <- function(container) {
 size.default <- function(container) {
   stop('size not implemented for ', class(container))
 }
+
+#' Take n elements
+#' @param sequence A lazy sequence.
+#' @param n The number of elements to take.
+#' @export
+#' @examples
+#' seq <- primeSequence()
+#' unlist(take(seq, 10))
+take <- function(sequence, n) {
+  UseMethod('take')
+}
+
+
+#' Take elements while the condition is true
+#' @param sequence A lazy sequence.
+#' @param condition Take numbers until this condition function is \code{FALSE}.
+#' @export
+#' @examples
+#' seq <- primeSequence()
+#' unlist(takeWhile(seq, \(x) x < 100L))
+takeWhile <- function(sequence, condition) {
+  UseMethod('takeWhile')
+}
+
 
 #' Return the top element
 #' @param container A container object.
