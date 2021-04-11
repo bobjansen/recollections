@@ -9,7 +9,7 @@ public:
     return static_cast<T*>(this)->nextImpl();
   };
 
-  int getIndex() {
+  int getIndex() const {
     return index;
   }
 
