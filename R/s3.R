@@ -41,7 +41,7 @@ filter <- function(container, fun) {
 }
 
 #' Get the current index of a sequence
-#' @param container A lazy sequence.
+#' @param sequence A lazy sequence.
 #' @return The index.
 #' @export
 getIndex <- function(sequence) {

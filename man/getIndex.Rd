@@ -7,7 +7,7 @@
 getIndex(sequence)
 }
 \arguments{
-\item{container}{A lazy sequence.}
+\item{sequence}{A lazy sequence.}
 }
 \value{
 The index.
