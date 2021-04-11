@@ -27,7 +27,7 @@ public:
     delete innerMap;
   }
 
-  RObject at(std::vector<std::string> keys) {
+  RObject at(std::vector<std::string> keys) const {
     int n = keys.size();
     if (n > 1) {
       List list = List::create();
@@ -45,7 +45,7 @@ public:
     innerMap->clear();
   }
 
-  bool empty() {
+  bool empty() const {
     return innerMap->empty();
   }
 
@@ -77,7 +77,7 @@ public:
     }
   }
 
-  std::vector<std::string> keys() {
+  std::vector<std::string> keys() const {
     std::vector<std::string> keysVector;
     for (auto const& kv : *innerMap) {
       keysVector.push_back(kv.first);
@@ -85,7 +85,7 @@ public:
     return keysVector;
   }
 
-  List list() {
+  List list() const {
     List list = List::create();
     for (auto const& kv : *innerMap) {
       list[kv.first] = kv.second;
@@ -93,7 +93,7 @@ public:
     return list;
   }
 
-  int size() {
+  int size() const {
     return innerMap->size();
   }
 };

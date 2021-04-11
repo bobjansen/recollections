@@ -15,7 +15,7 @@ public:
     delete innerHeap;
   }
 
-  bool empty() {
+  bool empty() const {
     return innerHeap->empty();
   }
 
@@ -25,7 +25,7 @@ public:
     }
   }
 
-  int size() {
+  int size() const {
     return innerHeap->size();
   }
 
@@ -41,7 +41,7 @@ public:
     }
   }
 
-  int top() {
+  int top() const {
     if (empty()) {
       throw std::length_error("Priority Queue empty, can't top()");
     }
