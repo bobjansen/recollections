@@ -50,15 +50,15 @@ RCPP_MODULE(sequence_module) {
     .constructor()
   ;
 
-  class_<Sequence<RangeSequence>>("RangeSequence_")
+  class_<Sequence<StepSequence>>("StepSequence_")
     .constructor()
-    .method("nextItem", &Sequence<RangeSequence>::nextItem)
-    .method("getIndex", &Sequence<RangeSequence>::getIndex)
-    .method("take", &Sequence<RangeSequence>::take)
+    .method("nextItem", &Sequence<StepSequence>::nextItem)
+    .method("getIndex", &Sequence<StepSequence>::getIndex)
+    .method("take", &Sequence<StepSequence>::take)
   ;
 
-  class_<RangeSequence>("RangeSequence")
-    .derives<Sequence<PrimeSequence>>("RangeSequence_")
+  class_<StepSequence>("StepSequence")
+    .derives<Sequence<StepSequence>>("StepSequence_")
     .constructor<int, int>()
   ;
 

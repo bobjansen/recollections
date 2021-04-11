@@ -1,5 +1,5 @@
-#include <stdexcept>
 #include <queue>
+#include <stdexcept>
 #include <RcppCommon.h>
 using namespace Rcpp;
 

@@ -39,13 +39,13 @@ public:
   }
 };
 
-class RangeSequence : public Sequence<RangeSequence> {
+class StepSequence : public Sequence<StepSequence> {
 private:
   int lastVal;
   const int step;
 
 public:
-  RangeSequence(int initVal, int step) : lastVal(initVal), step(step) {}
+  StepSequence(int initVal, int step) : lastVal(initVal), step(step) {}
 
   RObject nextImpl() {
     int retVal = lastVal;
@@ -57,16 +57,20 @@ public:
 class CycleSequence : public Sequence<CycleSequence> {
 private:
   int lastVal;
-  const int step;
+  const int start;
   const int maxVal;
+  const int step;
 
 public:
-  CycleSequence(int initVal, int step, int maxVal) :
-  lastVal(initVal), step(step), maxVal(maxVal) {}
+  CycleSequence(int initVal, int maxVal, int step) :
+  lastVal(initVal), start(lastVal), maxVal(maxVal), step(step) {}
 
   RObject nextImpl() {
     int retVal = lastVal;
-    lastVal = (lastVal + step) % maxVal;
+    lastVal += step;
+    if (lastVal >= maxVal) {
+      lastVal = lastVal - maxVal + start;
+    }
     return wrap(retVal);
   }
 };
