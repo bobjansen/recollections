@@ -1,3 +1,6 @@
+#ifndef priority_queue_h
+#define priority_queue_h
+
 #include <queue>
 #include <stdexcept>
 #include <RcppCommon.h>
@@ -6,9 +9,6 @@ using namespace Rcpp;
 //' Priority Queue class
 //' @export
 class PriorityQueue {
-private:
-  std::priority_queue<int> innerHeap;
-
 public:
   bool empty() const {
     return innerHeap.empty();
@@ -19,6 +19,14 @@ public:
       innerHeap.pop();
     }
   }
+
+  List toList() {
+    List list = List::create();
+    while (!empty()) {
+      list.push_back(topAndPop());
+    }
+    return list;
+  };
 
   int size() const {
     return innerHeap.size();
@@ -48,4 +56,9 @@ public:
     innerHeap.pop();
     return topValue;
   }
+
+private:
+  std::priority_queue<int> innerHeap;
 };
+
+#endif

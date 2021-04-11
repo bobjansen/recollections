@@ -1,6 +1,7 @@
 #include <string>
 #include <vector>
 #include <Rcpp.h>
+#include "bounded_priority_queue.h"
 #include "dictionary.h"
 #include "priority_queue.h"
 #include "sequence.h"
@@ -31,8 +32,24 @@ RCPP_MODULE(priority_queue_module) {
     .method("pop", &PriorityQueue::pop)
     .method("push", &PriorityQueue::push)
     .method("size", &PriorityQueue::size)
+    .method("toList", &PriorityQueue::toList)
     .method("top", &PriorityQueue::top)
     .method("topAndPop", &PriorityQueue::topAndPop)
+  ;
+}
+
+RCPP_MODULE(bounded_priority_queue_module) {
+  class_<BoundedPriorityQueue>("BoundedPriorityQueue")
+  .constructor<int>()
+
+  .method("clear", &BoundedPriorityQueue::clear)
+  .method("empty", &BoundedPriorityQueue::empty)
+  .method("insert", &BoundedPriorityQueue::insert)
+  .method("pop", &BoundedPriorityQueue::pop)
+  .method("size", &BoundedPriorityQueue::size)
+  .method("toList", &BoundedPriorityQueue::toList)
+  .method("top", &BoundedPriorityQueue::top)
+  .method("topAndPop", &BoundedPriorityQueue::topAndPop)
   ;
 }
 

@@ -9,11 +9,13 @@ using namespace Rcpp;
 
 RcppExport SEXP _rcpp_module_boot_dictionary_module();
 RcppExport SEXP _rcpp_module_boot_priority_queue_module();
+RcppExport SEXP _rcpp_module_boot_bounded_priority_queue_module();
 RcppExport SEXP _rcpp_module_boot_sequence_module();
 
 static const R_CallMethodDef CallEntries[] = {
     {"_rcpp_module_boot_dictionary_module", (DL_FUNC) &_rcpp_module_boot_dictionary_module, 0},
     {"_rcpp_module_boot_priority_queue_module", (DL_FUNC) &_rcpp_module_boot_priority_queue_module, 0},
+    {"_rcpp_module_boot_bounded_priority_queue_module", (DL_FUNC) &_rcpp_module_boot_bounded_priority_queue_module, 0},
     {"_rcpp_module_boot_sequence_module", (DL_FUNC) &_rcpp_module_boot_sequence_module, 0},
     {NULL, NULL, 0}
 };
