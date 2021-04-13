@@ -1,4 +1,5 @@
 #include <map>
+#include <string>
 #include "RcppCommon.h"
 using namespace Rcpp;
 
@@ -26,7 +27,7 @@ public:
   List toList() const {
     List list = List::create();
     for (auto const& kv : innerMap) {
-      list[as<std::string>(kv.second)] = kv.first;
+      list[std::to_string(kv.first)] = kv.second;
     }
     return list;
   }
