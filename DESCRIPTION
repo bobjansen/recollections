@@ -13,5 +13,5 @@ Imports:
 LinkingTo: Rcpp
 Suggests:
     data.table, digest, knitr, microbenchmark, tinytest
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 VignetteBuilder: knitr
