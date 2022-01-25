@@ -27,7 +27,7 @@ expect_true(empty(bpq))
 
 bpq <- recollections::boundedPriorityQueue(2L, `1` = 'f', `2` = 's', `3` = 't')
 expect_equal(size(bpq), 2L)
-expect_equal(toList(bpq), list(s = 2L, t = 3))
+expect_equal(toList(bpq), list(`2` = 's', `3` = 't'))
 expect_equal(topAndPop(bpq), 't')
 expect_equal(topAndPop(bpq), 's')
 expect_true(empty(bpq))
