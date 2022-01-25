@@ -4,6 +4,7 @@
 #include "bounded_priority_queue.h"
 #include "dictionary.h"
 #include "priority_queue.h"
+#include "string_builder.h"
 #include "sequence.h"
 
 RCPP_MODULE(dictionary_module) {
@@ -20,6 +21,15 @@ RCPP_MODULE(dictionary_module) {
     .method("list", &Dictionary::list)
     .method("map", &Dictionary::map)
     .method("size", &Dictionary::size)
+  ;
+}
+
+RCPP_MODULE(string_builder_module) {
+  class_<StringBuilder>("StringBuilder")
+    .constructor()
+    .method("append", &StringBuilder::append)
+    .method("append_vector", &StringBuilder::append_vector)
+    .method("toString", &StringBuilder::toString)
   ;
 }
 

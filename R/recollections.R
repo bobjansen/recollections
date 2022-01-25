@@ -7,4 +7,5 @@
   Rcpp::loadModule('dictionary_module', TRUE)
   Rcpp::loadModule('priority_queue_module', TRUE)
   Rcpp::loadModule('sequence_module', TRUE)
+  Rcpp::loadModule('string_builder_module', TRUE)
 }
