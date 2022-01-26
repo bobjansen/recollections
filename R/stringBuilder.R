@@ -17,20 +17,21 @@ stringBuilder <- function(...) {
   structure(list(container = container), class = 'StringBuilder')
 }
 
+#' @import utils
 #' @export
-push.StringBuilder <- function(container, chunk) {
-  if (length(chunk) > 1L) {
-    container$container$append_vector(chunk)
+push.StringBuilder <- function(container, value) {
+  if (length(value) > 1L) {
+    container$container$append_vector(value)
   } else {
-    if (is.object(chunk)) {
-      container$container$append(str(chunk))
+    if (is.object(value)) {
+      container$container$append(utils::str(value))
     } else {
-      container$container$append(toString(chunk))
+      container$container$append(toString(value))
     }
   }
 }
 
 #' @export
-toString.StringBuilder <- function(container) {
-  container$container$toString()
+toString.StringBuilder <- function(x, ...) {
+  x$container$toString()
 }

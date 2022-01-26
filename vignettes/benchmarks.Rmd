@@ -23,7 +23,7 @@ suppressMessages(library(recollections))
 
 # Introduction
 
-These benchmarks compare the speed of implementing the data structures 
+These benchmarks compare the speed of implementing the data structures
 provided by recollections with base R and the data.table-package. Both base R
 and data.table were not made with the use of case of the recollections in mind
 so one would hope that the purpose-built recollection package is faster on
@@ -91,9 +91,10 @@ microbenchmark::microbenchmark(
 
 ## Benchmark - Bigger sample
 
-The algorithm used for data.table is slow due to the need to do repeated 
+The algorithm used for data.table is slow due to the need to do repeated
 ordering. Other ways would be faster but more or less equivalent to just using
-base R. In the next benchmark it is excluded and the input size is increased.
+base R. In the next benchmark data.table is excluded and the input size is
+increased.
 
 ```{r}
 biggerSample <- inputData[1:2e4]
