@@ -11,7 +11,7 @@ At the moment recollections exposes the following C++ STL data structures to R:
 
 - Bounded priority queue based on `std::map`
 - Dictionary (hash table) based on `std::unordered_map`
-- Priority queue based on `priority_queue`
+- Priority queue based on `std::priority_queue`
 - Sequences (Step Sequence, Cyclic Sequence, Prime Sequence)
 - String Builder (custom implementation based on `std::vector<std::string>`
 
@@ -29,4 +29,4 @@ The data structures have the following S3-methods (where applicable):
 - `setValue()` sets a value for a key
 - `size()` the size of a container
 - `top()` the top item from a container
-- `top()` returns and removes the top element of a container
+- `topAndPop()` returns and removes the top element of a container
