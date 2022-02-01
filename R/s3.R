@@ -82,7 +82,7 @@ nextItem <- function(sequence) {
   UseMethod('nextItem')
 }
 
-#' Push a value to a container
+#' Pop a value from a container
 #' @param container A container object.
 #' @export
 pop <- function(container) {

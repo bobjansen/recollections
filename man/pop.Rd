@@ -2,7 +2,7 @@
 % Please edit documentation in R/s3.R
 \name{pop}
 \alias{pop}
-\title{Push a value to a container}
+\title{Pop a value from a container}
 \usage{
 pop(container)
 }
@@ -10,5 +10,5 @@ pop(container)
 \item{container}{A container object.}
 }
 \description{
-Push a value to a container
+Pop a value from a container
 }
