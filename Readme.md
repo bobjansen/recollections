@@ -15,6 +15,26 @@ At the moment recollections exposes the following C++ STL data structures to R:
 - Sequences (Step Sequence, Cyclic Sequence, Prime Sequence)
 - String Builder (custom implementation based on `std::vector<std::string>`
 
+# Example use
+
+## Dictionary
+
+```R
+# Function and indexing style
+dict <- recollections::dictionary()
+dict['foo'] <- 1L
+setValue(dict, 'bar', 2L)
+dict['foo'] # 1L
+getValue(dict, 'bar')  # 2L
+
+# Pipes
+dict <- recollections::dictionary() |>
+  setValue('foo', 1L) |>
+  setValue('bar', 2L)
+dict['foo'] # 1L
+dict['bar'] # 2L
+```
+
 # API
 
 The data structures have the following S3-methods (where applicable):
