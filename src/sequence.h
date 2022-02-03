@@ -68,7 +68,7 @@ public:
   RObject nextImpl() {
     int retVal = lastVal;
     lastVal += step;
-    if (lastVal >= maxVal) {
+    if (lastVal > maxVal) {
       lastVal = lastVal - maxVal + start;
     }
     return wrap(retVal);

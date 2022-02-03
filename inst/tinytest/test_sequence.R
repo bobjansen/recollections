@@ -18,7 +18,7 @@ expect_equal(getIndex(stepSeq), 11L)
 cycleSeq <- recollections::cycleSequence(1L, 4L, 2L)
 expect_equal(capture.output(print(cycleSeq)), "[1] \"Lazy Sequence\"")
 expect_equal(nextItem(cycleSeq), 1L)
-expect_equal(unlist(take(cycleSeq, 3L)), c(3L, 2L, 1L))
+expect_equal(unlist(take(cycleSeq, 3L)), c(3L, 2L, 4L))
 expect_equal(getIndex(cycleSeq), 4L)
 
 # Prime sequence ----
