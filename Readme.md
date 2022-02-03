@@ -12,8 +12,15 @@ At the moment recollections exposes the following C++ STL data structures to R:
 - Bounded priority queue based on `std::map`
 - Dictionary (hash table) based on `std::unordered_map`
 - Priority queue based on `std::priority_queue`
-- Sequences (Step Sequence, Cyclic Sequence, Prime Sequence)
 - String Builder (custom implementation based on `std::vector<std::string>`
+
+and several sequences:
+- Cyclic Sequence
+- Prime Sequence
+- Step Sequence
+
+which can be accessed using `nextItem(sequence)`, `take(sequence, n)` and
+`takeWhile(sequence, fun)`.
 
 # Example use
 
@@ -31,8 +38,25 @@ getValue(dict, 'bar')  # 2L
 dict <- recollections::dictionary() |>
   setValue('foo', 1L) |>
   setValue('bar', 2L)
-dict['foo'] # 1L
 dict['bar'] # 2L
+dict['foo'] # 1L
+```
+
+## Lazy sequences
+
+```R
+cycleSeq <- cycleSequence(5, 25, 5)
+unlist(take(cycleSeq, 10L))  # [1]  5 10 15 20 25 10 15 20 25 10
+
+primeSeq <- recollections::primeSequence()
+for (i in 1:10) {
+  cat(nextItem(primeSeq), ' ')  # 2  3  5  7  11  13  17  19  23  29
+}
+unlist(takeWhile(primeSeq, \(val) val < 50L))  # [1] 31 37 41 43 47
+unlist(take(primeSeq, 5L))  # [1] 59 61 67 71 73
+
+stepSeq <- stepSequence(5L, 4L)
+unlist(take(stepSeq, 10L))  # [1]  5  9 13 17 21 25 29 33 37 41
 ```
 
 # API
