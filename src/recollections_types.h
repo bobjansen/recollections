@@ -69,6 +69,7 @@ RCPP_MODULE(sequence_module) {
     .constructor()
     .method("nextItem", &Sequence<IntSequence>::nextItem)
     .method("getIndex", &Sequence<IntSequence>::getIndex)
+    .method("peek", &Sequence<IntSequence>::peek)
     .method("take", &Sequence<IntSequence>::take)
   ;
 
@@ -81,6 +82,7 @@ RCPP_MODULE(sequence_module) {
     .constructor()
     .method("nextItem", &Sequence<StepSequence>::nextItem)
     .method("getIndex", &Sequence<StepSequence>::getIndex)
+    .method("peek", &Sequence<StepSequence>::peek)
     .method("take", &Sequence<StepSequence>::take)
   ;
 
@@ -93,6 +95,7 @@ RCPP_MODULE(sequence_module) {
     .constructor()
     .method("nextItem", &Sequence<CycleSequence>::nextItem)
     .method("getIndex", &Sequence<CycleSequence>::getIndex)
+    .method("peek", &Sequence<CycleSequence>::peek)
     .method("take", &Sequence<CycleSequence>::take)
   ;
 
@@ -105,6 +108,7 @@ RCPP_MODULE(sequence_module) {
     .constructor()
     .method("nextItem", &Sequence<PrimeSequence>::nextItem)
     .method("getIndex", &Sequence<PrimeSequence>::getIndex)
+    .method("peek", &Sequence<PrimeSequence>::peek)
     .method("take", &Sequence<PrimeSequence>::take)
   ;
 

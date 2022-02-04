@@ -29,6 +29,10 @@ expect_equal(unlist(take(primeSeq, 4L)), c(3L, 5L, 7L, 11L))
 expect_equal(getIndex(primeSeq), 5L)
 
 primeSeq <- recollections::primeSequence()
+expect_equal(unlist(takeWhile(primeSeq, \(val) val < 5)), c(2L, 3L))
+expect_equal(unlist(take(primeSeq, 2)), c(5L, 7L))
+
+primeSeq <- recollections::primeSequence()
 expect_equal(
   unlist(takeWhile(primeSeq, \(x) x < 20L)),
   c(2L, 3L, 5L, 7L, 11L, 13L, 17L, 19L)

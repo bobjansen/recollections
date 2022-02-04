@@ -82,6 +82,13 @@ nextItem <- function(sequence) {
   UseMethod('nextItem')
 }
 
+#' Peek at the next value in a sequence but don't advance in the sequence
+#' @param sequence A lazy sequence.
+#' @return The next item.
+#' @export
+peek <- function(sequence) {
+  UseMethod('peek')
+}
 #' Pop a value from a container
 #' @param container A container object.
 #' @export

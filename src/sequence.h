@@ -6,11 +6,23 @@ class Sequence {
 public:
   RObject nextItem() {
     index++;
+    if (next_item != nullptr) {
+      RObject tmp = next_item;
+      next_item = nullptr;
+      return tmp;
+    }
     return static_cast<T*>(this)->nextImpl();
   };
 
   int getIndex() const {
     return index;
+  }
+
+  RObject peek() {
+    if (next_item == nullptr) {
+      next_item = static_cast<T*>(this)->nextImpl();
+    }
+    return next_item;
   }
 
   RObject take(int n) {
@@ -23,6 +35,7 @@ public:
 
 private:
   int index = 0;
+  RObject next_item = nullptr;
 };
 
 class IntSequence : public Sequence<IntSequence> {

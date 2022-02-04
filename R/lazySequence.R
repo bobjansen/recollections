@@ -75,6 +75,10 @@ nextItem.Sequence <- function(sequence) {
   sequence$sequence$nextItem()
 }
 
+peek.Sequence <- function(sequence) {
+  sequence$sequence$peek()
+}
+
 #' @export
 print.Sequence <- function(x, ...) {
   print("Lazy Sequence", ...)
@@ -88,10 +92,8 @@ take.Sequence <- function(sequence, n) {
 #' @export
 takeWhile.Sequence <- function(sequence, condition) {
   output <- list()
-  val <- nextItem(sequence)
-  while (condition(val)) {
-    output <- c(output, val)
-    val <- nextItem(sequence)
+  while (condition(peek(sequence))) {
+    output <- c(output, nextItem(sequence))
   }
   output
 }
