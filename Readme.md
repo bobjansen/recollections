@@ -53,7 +53,7 @@ for (i in 1:10) {
   cat(nextItem(primeSeq), ' ')  # 2  3  5  7  11  13  17  19  23  29
 }
 unlist(takeWhile(primeSeq, \(val) val < 50L))  # [1] 31 37 41 43 47
-unlist(take(primeSeq, 5L))  # [1] 59 61 67 71 73
+unlist(take(primeSeq, 5L))  # [1] 53 59 61 67 71
 
 stepSeq <- stepSequence(5L, 4L)
 unlist(take(stepSeq, 10L))  # [1]  5  9 13 17 21 25 29 33 37 41
