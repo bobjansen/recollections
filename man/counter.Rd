@@ -9,6 +9,9 @@ counter(...)
 \arguments{
 \item{...}{Initial values of the counter.}
 }
+\value{
+A dictionary of class counter.
+}
 \description{
 Counter object inspired on Python collections.Counter
 }

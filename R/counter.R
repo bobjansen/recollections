@@ -1,7 +1,7 @@
 #' Counter object inspired on Python collections.Counter
 #'
 #' @param ... Initial values of the counter.
-#'
+#' @return A dictionary of class counter.
 #' @export
 counter <- function(...) {
   container <- new(Dictionary)
@@ -11,6 +11,25 @@ counter <- function(...) {
     container$insert(name, dots[[name]])
   }
 
+  structure(list(container = container), class = 'Counter')
+}
+
+#' Create a counter object from a list of strings
+#'
+#' @param lst A list of items, will be coerced to \code{character}.
+#' @return A dictionary with the as keys the distinct elements of the input list
+#' and as values the count of these elements.
+#' @export
+counterFromList <- function(lst) {
+  lst <- as.character(lst)
+  container <- new(Dictionary)
+  for (elem in lst) {
+    tryCatch({
+      val <- container$at(elem)
+      container$insert(elem, val + 1L)
+    }, error = function(e) container$insert(elem, 1L)
+    )
+  }
   structure(list(container = container), class = 'Counter')
 }
 
